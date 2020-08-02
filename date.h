@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <sstream>
 using namespace std;
 class Date {
 public:
@@ -10,10 +11,11 @@ public:
 		Day(day)
 	{}
 	string makeString() {
-		stringstream out("");
+		ostringstream out;
 		out << Year << "-" <<
 			Month << "-" <<
 			Day;
+		return out.str();
 	}
 private:
 	int Year;
@@ -21,8 +23,12 @@ private:
 	int Day;
 };
 ostream& operator <<(ostream& os, Date& date) {
-
+	string strOut = date.makeString();
+	ostringstream out(strOut);
+	return out;
 }
 Date ParseDate(istream& is) {
-
+	int year_, month_, day_;
+	is >> year_ >> month_ >> day_;
+	Date date(year_, month_, day_);
 }
