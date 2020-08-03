@@ -3,8 +3,11 @@
 #include "condition_parser.h"
 #include "node.h"
 #include "test_runner.h"
+#include "DateTest.h"
+
 
 #include <iostream>
+#include <vector>
 #include <stdexcept>
 
 using namespace std;
@@ -87,4 +90,5 @@ void TestAll() {
   TestRunner tr;
   tr.RunTest(TestParseEvent, "TestParseEvent");
   tr.RunTest(TestParseCondition, "TestParseCondition");
+  tr.RunTest(TestDate, "TestDate");
 }

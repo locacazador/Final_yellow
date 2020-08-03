@@ -143,6 +143,7 @@
     <ClCompile Include="condition_parser_test.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="date.cpp" />
+    <ClCompile Include="dateTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="node.cpp" />
     <ClCompile Include="token.cpp" />
@@ -150,7 +151,10 @@
   <ItemGroup>
     <ClInclude Include="condition_parser.h" />
     <ClInclude Include="database.h" />
-    <ClInclude Include="date.h" />
+    <ClInclude Include="date.h">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="DateTest.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="test_runner.h" />
     <ClInclude Include="token.h" />

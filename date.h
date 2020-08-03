@@ -2,33 +2,22 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 using namespace std;
 class Date {
 public:
-	Date(int year, int month, int day)
-		: Year(year),
-		Month(month),
-		Day(day)
-	{}
-	string makeString() {
-		ostringstream out;
-		out << Year << "-" <<
-			Month << "-" <<
-			Day;
-		return out.str();
-	}
+	Date(const int& year, const int& month,const int& day);
+	int getYear() const;
+	int getMonth() const;
+	int getDay() const;
+	string makeString();
 private:
 	int Year;
 	int Month;
 	int Day;
 };
-ostream& operator <<(ostream& os, Date& date) {
-	string strOut = date.makeString();
-	ostringstream out(strOut);
-	return out;
-}
-Date ParseDate(istream& is) {
-	int year_, month_, day_;
-	is >> year_ >> month_ >> day_;
-	Date date(year_, month_, day_);
-}
+ostream& operator <<(ostream& os, Date& date);
+
+Date ParseDate(istream& is);
+bool operator ==(const Date& lhs, const Date& rhs);
+bool operator < (const Date& lhs, const Date& rhs);
