@@ -11,6 +11,7 @@ public:
 	int getMonth() const;
 	int getDay() const;
 	string makeString();
+	friend ostream& operator << (ostream& os, const Date& date);
 private:
 	int Year;
 	int Month;
