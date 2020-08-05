@@ -1,5 +1,4 @@
 #include "database.h"
-#include <algorithm>
 void Database::Add(const Date& date_, const string& event_) {
 	if (!storage[date_].setOfEvents.count(event_)) {
 		storage[date_].setOfEvents.insert(event_);

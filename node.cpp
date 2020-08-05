@@ -3,43 +3,43 @@
 using namespace std;
 
 bool EmptyNode::Evaluate(const Date& date, const string& event_) const {
-	return false;
+	return true;
 }
-DateComprasionNode::DateComprasionNode(
+DateComparisonNode::DateComparisonNode(
 	const Date& date_,
-	const Comprasion& comp_)
+	const Comparison& comp_)
 	:
 	date(date_), comp(comp_)
 {}
 
-bool DateComprasionNode::Evaluate (
+bool DateComparisonNode::Evaluate (
 	const Date& date_,
 	const string& event_
 ) const {
-	if (comp == Comprasion::Equal) {
+	if (comp == Comparison::Equal) {
 		return date_ == date;
 	}
-	else if (comp == Comprasion::Less) {
+	else if (comp == Comparison::Less) {
 		return date < date_;
 	}
-	else if (comp == Comprasion:: LessOrEqual) {
+	else if (comp == Comparison:: LessOrEqual) {
 		return !(date_ < date);
 	}
-	else if (comp == Comprasion::More) {
+	else if (comp == Comparison::Greater) {
 		return date_ < date;
 	}
-	else if (comp == Comprasion::MoreOrEqual) {
+	else if (comp == Comparison::GreaterOrEqual) {
 		return !(date < date_);
 	}
-	else if (comp == Comprasion::NotEqual) {
+	else if (comp == Comparison::NotEqual) {
 		return !(date_ == date);
 	}
 }
 
 LogicalOperationNode::LogicalOperationNode(
 	const LogicalOperation& logicalOperation_,
-	shared_ptr<const Node>& left_,
-	shared_ptr<const Node>& right_
+	const shared_ptr<Node>& left_,
+	const shared_ptr<Node>& right_
 ):
 	logicalOperation(logicalOperation_),
 	lhs(left_),
@@ -58,34 +58,34 @@ bool LogicalOperationNode::Evaluate(
 	}
 }
 
-EventComprasionNode::EventComprasionNode(
+EventComparisonNode::EventComparisonNode(
 	const string& event_,
-	const Comprasion& comp_
+	const Comparison& comp_
 	)
 	:
 	Event(event_), comp(comp_)
 {}
 
-bool EventComprasionNode::Evaluate(
+bool EventComparisonNode::Evaluate(
 	const Date& date_,
 	const string& event_
 ) const {
-	if (comp == Comprasion::Equal) {
+	if (comp == Comparison::Equal) {
 		return Event == event_;
 	}
-	else if (comp == Comprasion::Less) {
+	else if (comp == Comparison::Less) {
 		return Event < event_;
 	}
-	else if (comp == Comprasion::LessOrEqual) {
+	else if (comp == Comparison::LessOrEqual) {
 		return !(event_ < Event);
 	}
-	else if (comp == Comprasion::More) {
+	else if (comp == Comparison::Greater) {
 		return event_ < Event;
 	}
-	else if (comp == Comprasion::MoreOrEqual) {
+	else if (comp == Comparison::GreaterOrEqual) {
 		return !(Event < event_);
 	}
-	else if (comp == Comprasion::NotEqual) {
+	else if (comp == Comparison::NotEqual) {
 		return !(event_ == Event);
 	}
 }

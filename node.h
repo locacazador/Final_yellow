@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
 #include "date.h"
+#include <memory>
 using namespace std;
-enum class Comprasion {
+enum class Comparison {
 	Less,
 	LessOrEqual,
 	Equal,
-	MoreOrEqual,
-	More,
+	GreaterOrEqual,
+	Greater,
 	NotEqual
 };
 enum class LogicalOperation {
@@ -22,36 +23,36 @@ class EmptyNode : public Node {
 public:
 	bool Evaluate(const Date& date_, const string& event_) const override;
 };
-class DateComprasionNode: public Node {
+class DateComparisonNode: public Node {
 public:
-	DateComprasionNode(
+	DateComparisonNode(
 		const Date& date_,
-		const Comprasion& comp_
+		const Comparison& comp_
 	);
 	bool Evaluate(const Date& date_, const string& event_) const override;
 private:
 	const Date date;
-	const Comprasion comp;
+	const Comparison comp;
 };
-class EventComprasionNode : public Node {
-	EventComprasionNode(
+class EventComparisonNode : public Node {
+	EventComparisonNode(
 		const string& event_,
-		const Comprasion& comp_
+		const Comparison& comp_
 	);
 	bool Evaluate(const Date& date_, const string& event_) const override;
 private:
 	const string Event;
-	const Comprasion comp;
+	const Comparison comp;
 };
 class LogicalOperationNode : public Node {
 public:
 	LogicalOperationNode(
 		const LogicalOperation& logicalOperation_,
-		shared_ptr<const Node>& left_,
-		shared_ptr<const Node>& right_
+		const shared_ptr<Node>& left_,
+		const shared_ptr<Node>& right_
 	);
 	bool Evaluate(const Date& date_, const string& event_) const override;
 private:
 	const LogicalOperation logicalOperation;
-	shared_ptr<const Node> lhs, rhs;
+	const shared_ptr<Node> lhs, rhs;
 };
