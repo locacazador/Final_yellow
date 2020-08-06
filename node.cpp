@@ -5,12 +5,18 @@ using namespace std;
 bool EmptyNode::Evaluate(const Date& date, const string& event_) const {
 	return true;
 }
-DateComparisonNode::DateComparisonNode(
-	const Date& date_,
-	const Comparison& comp_)
-	:
-	date(date_), comp(comp_)
-{}
+//DateComparisonNode::DateComparisonNode(
+//	const Date& date_,
+//	const Comparison comp_)
+//	:
+//	comp(comp_), date(date_)
+//{}
+
+DateComparisonNode::DateComparisonNode(const Comparison& comp_, const Date& date_)
+	: comp(comp_), date(date_)
+{
+	
+}
 
 bool DateComparisonNode::Evaluate (
 	const Date& date_,
@@ -59,11 +65,12 @@ bool LogicalOperationNode::Evaluate(
 }
 
 EventComparisonNode::EventComparisonNode(
-	const string& event_,
-	const Comparison& comp_
+	const Comparison& comp_,
+	const string& event_
 	)
 	:
-	Event(event_), comp(comp_)
+	comp(comp_),
+	Event(event_)
 {}
 
 bool EventComparisonNode::Evaluate(

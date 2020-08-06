@@ -13,7 +13,9 @@
 using namespace std;
 
 string ParseEvent(istream& is) {
-  // Реализуйте эту функцию
+    string event;
+    getline(is, event, ' ');
+    return event;
 }
 
 void TestAll();
@@ -92,3 +94,5 @@ void TestAll() {
   tr.RunTest(TestParseCondition, "TestParseCondition");
   tr.RunTest(TestDate, "TestDate");
 }
+
+

@@ -17,8 +17,8 @@ Date ParseDate(istream& is) {
 }
 ostream& operator <<(ostream& os, Date& date) {
 	string strOut = date.makeString();
-	ostringstream out(strOut);
-	return out;
+	os << strOut;
+	return os;
 }
 string Date::makeString() {
 	ostringstream out;
@@ -64,4 +64,7 @@ bool operator < (const Date& lhs, const Date& rhs) {
 	else {
 		return lhs.getYear() < rhs.getYear();
 	}
+}
+bool operator != (const Date& lhs, const Date& rhs) {
+	return !(lhs == rhs);
 }

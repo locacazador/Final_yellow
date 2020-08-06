@@ -18,12 +18,13 @@ class Database {
 public:
 	void Add(const Date& date_, const string& event_);
 	void Print(ostream& out) const;
-	template <typename Condition> vector<string> FindIf(const Condition& condition) const {
+	template <typename Condition> vector<string> FindIf(const Condition& condition) const { 
 		vector<string> outVec;
 		for (auto item : storage) {
+			set<string> tmp = item.second.setOfEvents;
 			int counter = 0;
 			auto iterToCopy = stable_partition(item.second.setOfEvents.begin(), item.second.setOfEvents.end(),
-				[&counter, item](string a) {
+				[&counter, &item, &condition](string a) {
 					counter++;
 					if (condition(item.first, a)) {
 						return true;
@@ -40,6 +41,7 @@ public:
 				ss << date_.makeString() << " " << *iterSet++ << endl;
 				outVec.push_back(ss.str());
 			}
+			item.second.setOfEvents = tmp;
 		}
 		return outVec;
 	}

@@ -26,23 +26,24 @@ public:
 class DateComparisonNode: public Node {
 public:
 	DateComparisonNode(
-		const Date& date_,
-		const Comparison& comp_
+		const Comparison& comp_,
+		const Date& date_
 	);
 	bool Evaluate(const Date& date_, const string& event_) const override;
 private:
-	const Date date;
 	const Comparison comp;
+	const Date date;
+
 };
 class EventComparisonNode : public Node {
 	EventComparisonNode(
-		const string& event_,
-		const Comparison& comp_
+		const Comparison& comp_,
+		const string& event_
 	);
 	bool Evaluate(const Date& date_, const string& event_) const override;
 private:
-	const string Event;
 	const Comparison comp;
+	const string Event;
 };
 class LogicalOperationNode : public Node {
 public:
